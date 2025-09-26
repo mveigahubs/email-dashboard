@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSpot Email Template Rebrand Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #F8F5EE;
+            color: #1D1D1F;
+            line-height: 1.47;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.02em;
+            color: #000000;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin: 0;
+            color: #6E6E73;
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #E5E5EA;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(255, 72, 0, 0.15);
+            border-color: #FF4800;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #FF4800;
+            margin-bottom: 4px;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            color: #6E6E73;
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+
+        .groups-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+            margin-top: 25px;
+        }
+
+        .group-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E5E5EA;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .group-section h3 {
+            color: #FF4800;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .group-item {
+            background: #F8F5EE;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .group-item:hover {
+            background: #F0E8FF;
+        }
+
+        .group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .group-name {
+            font-weight: 500;
+            color: #1D1D1F;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .group-count {
+            background: #FF4800;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .group-percentage {
+            color: #6E6E73;
+            font-size: 0.8rem;
+        }
+
+        .status-breakdown {
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+
+        .status-breakdown h4 {
+            color: #1D1D1F;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+        }
+
+        .status-item {
+            background: white;
+            padding: 8px 6px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #E5E5EA;
+            transition: all 0.2s ease;
+        }
+
+        .status-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .status-count {
+            font-weight: 600;
+            color: #FF4800;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+            line-height: 1;
+        }
+
+        .status-percentage {
+            font-size: 0.7rem;
+            color: #6E6E73;
+            margin-bottom: 4px;
+        }
+
+        .status-name {
+            font-size: 0.65rem;
+            color: #1D1D1F;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .status-overview {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E5E5EA;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0px;
+        }
+
+
+        .status-overview h3 {
+            color: #FF4800;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+
+
+
+
+        .refresh-btn {
+            background: #FF4800;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            background: #E03D00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 72, 0, 0.3);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: #33475B;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #33475B;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .groups-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .status-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .status-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HubSpot Email Template Rebrand Dashboard</h1>
+            <div class="last-updated" id="last-updated">
+                Last updated: Never
+            </div>
+        </div>
+
+        <button class="refresh-btn" onclick="loadData()">
+Refresh Data
+        </button>
+
+        <div class="loading" id="loading">
+            <p>Loading data...</p>
+        </div>
+
+        <div id="dashboard-content">
+            <!-- Dashboard content will be loaded here -->
+        </div>
+    </div>
+
+    <script src="csv-loader.js"></script>
+    <script>
+        let dashboardData = null;
+
+        // Clean status function
+        function cleanStatus(status) {
+            if (!status || status.trim() === '') return 'Not Created';
+            return status.trim();
+        }
+
+        // Clean language function
+        function cleanLanguage(language) {
+            if (!language || language.trim() === '') return 'Unknown';
+            const clean = language.trim();
+            // Handle special cases
+            if (clean.includes('Backfill TBD') || clean.includes('Kelsey Craddock')) {
+                return 'Backfill TBD';
+            }
+            return clean;
+        }
+
+        // Clean priority function
+        function cleanPriority(priority) {
+            if (!priority || priority.trim() === '') return 'Unassigned';
+            return priority.trim();
+        }
+
+        // Calculate percentage
+        function calculatePercentage(count, total) {
+            if (total === 0) return '0%';
+            return ((count / total) * 100).toFixed(1) + '%';
+        }
+
+        // Calculate completion percentage (completed work vs total work)
+        function calculateCompletionPercentage(statuses, total) {
+            // Completed statuses: Old Asset - Live, QA Ready - Old Asset Updated, Retired, No Update Needed
+            const completedStatuses = ['Old Asset - Live', 'QA Ready - Old Asset Updated', 'Retired', 'No Update Needed'];
+            const completedCount = completedStatuses.reduce((sum, status) => sum + (statuses[status] || 0), 0);
+            if (total === 0) return '0%';
+            return ((completedCount / total) * 100).toFixed(1) + '%';
+        }
+
+        // Parse CSV data
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[0].split(',');
+            
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim()) {
+                    const values = lines[i].split(',');
+                    if (values.length >= 11) {
+                        data.push({
+                            language: cleanLanguage(values[0]),
+                            priority: cleanPriority(values[1]),
+                            status: cleanStatus(values[10])
+                        });
+                    }
+                }
+            }
+            return data;
+        }
+
+        // Generate dashboard HTML from processed data
+        function generateDashboardFromData(data) {
+            const totalEmails = data.totalEmails;
+            const statusCounts = data.statusCounts;
+            const languageStats = data.languageStats;
+            const priorityStats = data.priorityStats;
+            const sortedPriorities = data.sortedPriorities;
+            const sortedLanguages = data.sortedLanguages;
+
+            // Calculate overall completion
+            const overallCompletion = calculateCompletionPercentage(statusCounts, totalEmails);
+            
+            // Generate overview section
+            const overviewHTML = `
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalEmails.toLocaleString()}</div>
+                        <div class="stat-label">Total Emails</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${overallCompletion}</div>
+                        <div class="stat-label">Overall Complete</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${Object.keys(languageStats).length}</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${Object.keys(priorityStats).length}</div>
+                        <div class="stat-label">Priority Levels</div>
+                    </div>
+                </div>
+            `;
+
+            // Generate priority section
+            const priorityHTML = `
+                <div class="group-section">
+                    <h3>Priority Groups</h3>
+                    ${sortedPriorities.map(priority => {
+                        const stats = priorityStats[priority];
+                        const completionPercentage = calculateCompletionPercentage(stats.statuses, stats.total);
+                        return `
+                            <div class="group-item">
+                                <div class="group-header">
+                                    <div class="group-name">${priority}</div>
+                                    <div class="group-count">${stats.total}</div>
+                                </div>
+                                <div class="group-percentage">${completionPercentage} Complete</div>
+                            </div>
+                            <div class="status-breakdown">
+                                <div class="status-grid">
+                                    ${data.statusCategories.map(status => {
+                                        const count = stats.statuses[status] || 0;
+                                        const statusPercentage = calculatePercentage(count, stats.total);
+                                        return `
+                                            <div class="status-item">
+                                                <div class="status-count">${count}</div>
+                                                <div class="status-percentage">${statusPercentage}</div>
+                                                <div class="status-name">${status}</div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            // Generate language section
+            const languageHTML = `
+                <div class="group-section">
+                    <h3>Language Groups</h3>
+                    ${sortedLanguages.map(language => {
+                        const stats = languageStats[language];
+                        const completionPercentage = calculateCompletionPercentage(stats.statuses, stats.total);
+                        return `
+                            <div class="group-item">
+                                <div class="group-header">
+                                    <div class="group-name">${language}</div>
+                                    <div class="group-count">${stats.total}</div>
+                                </div>
+                                <div class="group-percentage">${completionPercentage} Complete</div>
+                            </div>
+                            <div class="status-breakdown">
+                                <div class="status-grid">
+                                    ${data.statusCategories.map(status => {
+                                        const count = stats.statuses[status] || 0;
+                                        const statusPercentage = calculatePercentage(count, stats.total);
+                                        return `
+                                            <div class="status-item">
+                                                <div class="status-count">${count}</div>
+                                                <div class="status-percentage">${statusPercentage}</div>
+                                                <div class="status-name">${status}</div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            // Generate overall status section
+            const statusHTML = `
+                <div class="status-overview">
+                    <h3>Overall Status</h3>
+                    <div class="status-grid">
+                        ${data.statusCategories.map(status => {
+                            const count = statusCounts[status] || 0;
+                            const percentage = calculatePercentage(count, totalEmails);
+                            return `
+                                <div class="status-item">
+                                    <div class="status-count">${count}</div>
+                                    <div class="status-percentage">${percentage}</div>
+                                    <div class="status-name">${status}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            return `
+                ${overviewHTML}
+                ${statusHTML}
+                <div class="groups-container">
+                    ${priorityHTML}
+                    ${languageHTML}
+                </div>
+            `;
+        }
+
+        // Sample data based on CSV analysis
+        const sampleData = [
+            { language: 'English', priority: 'Priority 1', status: 'QA Ready - Old Asset Updated' },
+            { language: 'English', priority: 'Priority 1', status: 'QA Ready - Old Asset Updated' },
+            { language: 'English', priority: 'Priority 1', status: 'QA Ready - Old Asset Updated' },
+            { language: 'Portuguese', priority: 'Priority 1', status: 'New Asset in Workflow' },
+            { language: 'English', priority: 'Priority 1', status: 'In Progress' },
+            { language: 'English', priority: 'Priority 1', status: 'Old Asset - Live' },
+            // Add more sample data based on the analysis
+        ];
+
+        // Clean Google Sheets data
+        function cleanGoogleSheetsData(rawData) {
+            // Clean the malformed data from Google Sheets
+            const cleanedData = {
+                totalEmails: 0,
+                languageStats: {},
+                priorityStats: {},
+                statusCounts: {
+                    'In Progress': 0,
+                    'New Asset in Workflow': 0,
+                    'No Update Needed': 0,
+                    'Not Created': 0,
+                    'Old Asset - Live': 0,
+                    'QA Ready - Old Asset Updated': 0,
+                    'Retired': 0
+                },
+                lastUpdated: rawData.lastUpdated || new Date().toISOString()
+            };
+
+            // The data structure has changed - now we need to identify which is which
+            // Check if the first key looks like a priority or language
+            const firstLangKey = Object.keys(rawData.languageStats)[0];
+            const firstPriorityKey = Object.keys(rawData.priorityStats)[0];
+            
+            // Determine which dataset contains priorities and which contains languages
+            let actualPriorityData, actualLanguageData;
+            
+            if (firstLangKey && firstLangKey.includes('Priority')) {
+                // languageStats actually contains priority data
+                actualPriorityData = rawData.languageStats;
+                actualLanguageData = rawData.priorityStats;
+            } else {
+                // Normal case
+                actualPriorityData = rawData.priorityStats;
+                actualLanguageData = rawData.languageStats;
+            }
+
+            // Clean priority stats (ensure we get Priority 1, Priority 2, etc.)
+            Object.keys(actualPriorityData).forEach(key => {
+                if (key !== 'Language' && key !== 'Priority' && (key.includes('Priority') || key.match(/Priority \d/))) {
+                    const priorityData = actualPriorityData[key];
+                    if (typeof priorityData.total === 'number') {
+                        cleanedData.priorityStats[key] = {
+                            total: priorityData.total,
+                            statuses: {}
+                        };
+                        
+                        Object.keys(priorityData.statuses).forEach(status => {
+                            const count = typeof priorityData.statuses[status] === 'number' ? priorityData.statuses[status] : 0;
+                            cleanedData.priorityStats[key].statuses[status] = count;
+                        });
+                    }
+                }
+            });
+
+            // Clean language stats (ensure we get English, French, etc.)
+            Object.keys(actualLanguageData).forEach(key => {
+                if (key !== 'Language' && key !== 'Priority' && !key.includes('Priority')) {
+                    const langData = actualLanguageData[key];
+                    if (typeof langData.total === 'number') {
+                        cleanedData.languageStats[key] = {
+                            total: langData.total,
+                            statuses: {}
+                        };
+                        
+                        Object.keys(langData.statuses).forEach(status => {
+                            const count = typeof langData.statuses[status] === 'number' ? langData.statuses[status] : 0;
+                            cleanedData.languageStats[key].statuses[status] = count;
+                            cleanedData.statusCounts[status] += count;
+                        });
+                        
+                        cleanedData.totalEmails += langData.total;
+                    }
+                }
+            });
+
+            // Add required fields
+            cleanedData.statusCategories = ['New Asset in Workflow', 'Old Asset - Live', 'QA Ready - Old Asset Updated', 'In Progress', 'Retired', 'No Update Needed', 'Not Created'];
+            cleanedData.sortedLanguages = Object.keys(cleanedData.languageStats).sort((a, b) => 
+                cleanedData.languageStats[b].total - cleanedData.languageStats[a].total
+            );
+            cleanedData.sortedPriorities = Object.keys(cleanedData.priorityStats).sort((a, b) => {
+                // Sort Priority 1, Priority 2, etc. in correct order
+                const aNum = parseInt(a.replace('Priority ', ''));
+                const bNum = parseInt(b.replace('Priority ', ''));
+                return aNum - bNum;
+            });
+
+            return cleanedData;
+        }
+
+        // Load data from Google Apps Script
+        async function loadData() {
+            const loading = document.getElementById('loading');
+            const content = document.getElementById('dashboard-content');
+            const lastUpdated = document.getElementById('last-updated');
+            
+            loading.classList.add('show');
+            content.innerHTML = '';
+            
+            try {
+                // Fetch data from Google Apps Script
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwNnvTQheGwJ6Fn8YkW7EIhtwM83hnaX6pfBU7sDucPeuYH0-9l96MvYI2SBMIgAMO-pQ/exec');
+                const rawData = await response.json();
+                
+                // Clean and process the data
+                dashboardData = cleanGoogleSheetsData(rawData);
+                content.innerHTML = generateDashboardFromData(dashboardData);
+                
+                lastUpdated.textContent = `Last updated: ${new Date(dashboardData.lastUpdated).toLocaleString()}`;
+            } catch (error) {
+                console.error('Error loading data from Google Sheets:', error);
+                // Fallback to sample data
+                dashboardData = generateSampleDashboardData();
+                content.innerHTML = generateDashboardFromData(dashboardData);
+                
+                lastUpdated.textContent = `Last updated: ${new Date().toLocaleString()} (Sample Data - Error loading from Google Sheets)`;
+            } finally {
+                loading.classList.remove('show');
+            }
+        }
+
+        // Generate sample dashboard data based on our CSV analysis
+        function generateSampleDashboardData() {
+            // Based on the actual CSV analysis (excluding non-language entries):
+            // Languages: English (5242), French (1011), Spanish (962), German (642), Japanese (442), Portuguese (430), Operational (43)
+            // Priorities: Priority 4 (2592), Priority 6 (2066), Priority 5 (1452), Priority 2 (1257), Priority 3 (798), Priority 1 (607)
+            // Priority 1 Statuses: QA Ready - Old Asset Updated (155), Not Created (119), Old Asset - Live (86), Retired (81), In Progress (57), New Asset in Workflow (13), No Update Needed (9)
+            
+            const totalEmails = 8772; // Total from analysis (excluding non-language entries)
+            
+            const languageStats = {
+                'English': { total: 5242, statuses: { 'Not Created': 4000, 'QA Ready - Old Asset Updated': 800, 'In Progress': 300, 'Old Asset - Live': 142 } },
+                'French': { total: 1011, statuses: { 'Not Created': 800, 'Retired': 150, 'QA Ready - Old Asset Updated': 61 } },
+                'Spanish': { total: 962, statuses: { 'Not Created': 750, 'Retired': 140, 'QA Ready - Old Asset Updated': 72 } },
+                'German': { total: 642, statuses: { 'Not Created': 500, 'Retired': 90, 'QA Ready - Old Asset Updated': 52 } },
+                'Japanese': { total: 442, statuses: { 'Not Created': 350, 'Retired': 70, 'QA Ready - Old Asset Updated': 22 } },
+                'Portuguese': { total: 430, statuses: { 'Not Created': 340, 'Retired': 60, 'New Asset in Workflow': 30 } },
+                'Operational': { total: 43, statuses: { 'Not Created': 30, 'No Update Needed': 13 } }
+            };
+            
+            const priorityStats = {
+                'Priority 1': { total: 607, statuses: { 'QA Ready - Old Asset Updated': 155, 'Not Created': 119, 'Old Asset - Live': 86, 'Retired': 81, 'In Progress': 57, 'New Asset in Workflow': 13, 'No Update Needed': 9 } },
+                'Priority 2': { total: 1257, statuses: { 'Not Created': 1000, 'QA Ready - Old Asset Updated': 200, 'Retired': 57 } },
+                'Priority 3': { total: 798, statuses: { 'Not Created': 600, 'Retired': 150, 'QA Ready - Old Asset Updated': 48 } },
+                'Priority 4': { total: 2592, statuses: { 'Not Created': 2000, 'Retired': 400, 'QA Ready - Old Asset Updated': 192 } },
+                'Priority 5': { total: 1452, statuses: { 'Not Created': 1200, 'Retired': 200, 'QA Ready - Old Asset Updated': 52 } },
+                'Priority 6': { total: 2066, statuses: { 'Not Created': 1800, 'Retired': 200, 'QA Ready - Old Asset Updated': 66 } }
+            };
+            
+            const statusCounts = {
+                'Not Created': 7300,
+                'Retired': 290,
+                'QA Ready - Old Asset Updated': 164,
+                'Old Asset - Live': 128,
+                'In Progress': 60,
+                'No Update Needed': 39,
+                'New Asset in Workflow': 16
+            };
+            
+            const sortedLanguages = Object.keys(languageStats).sort((a, b) => 
+                languageStats[b].total - languageStats[a].total
+            );
+            
+            const sortedPriorities = ['Priority 1', 'Priority 2', 'Priority 3', 'Priority 4', 'Priority 5', 'Priority 6'];
+            
+            return {
+                totalEmails,
+                statusCategories: ['New Asset in Workflow', 'Old Asset - Live', 'QA Ready - Old Asset Updated', 'In Progress', 'Retired', 'No Update Needed', 'Not Created'],
+                statusCounts,
+                languageStats,
+                priorityStats,
+                sortedLanguages,
+                sortedPriorities,
+                generatedAt: new Date().toISOString()
+            };
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+    </script>
+</body>
+</html>
